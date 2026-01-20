@@ -1,4 +1,4 @@
-<input type="text" [(ngModel)="searchTerm"/>
+<input type="text" [(ngModel)] ="searchTerm"/>
 <ul>
     @for(event of events | titleFilter: searchTerm; track event.id){
         <li>{{event.title}} - {{event.date}}</li>

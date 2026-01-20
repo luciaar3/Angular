@@ -1,20 +1,36 @@
+<nav class="navbar navbar-light bg-light justify-content-between mt-3">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link" href="#" (click)="orderDate()">Orden por fecha</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#" (click)="orderPrice()">Orden por precio</a>
+    </li>
+  </ul>
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="text" [(ngModel)]="searchText" name="search" placeholder="Search"
+      aria-label="Search">
+    <p>{{searchText}}</p>
+  </form>
+</nav>
+
 <div class="row">
   @if (events && events.length > 0) {
-    @for (event of events; track event.title) {
-      <div class="col-6 mt-4">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">{{ event.title }}</h4>
-            <p class="card-text">{{ event.description }}</p>
-          </div>
-          <div class="card-footer text-muted d-flex justify-content-between">
-            <span>{{ event.date }}</span>
-            <span>{{ event.price }}€</span>
-          </div>
-        </div>
+  @for (event of events | eventFilter: searchText; track event.title) {
+  <div class="col-6 mt-4">
+    <div class="card">
+      <img src="{{event.image}}" alt="Imagen del {{event.title}}" width="100%">
+      <div class="card-body">
+        <h4 class="card-title">{{ event.title | titlecase}}</h4>
+        <p class="card-text">{{ event.description }}</p>
       </div>
-    }
-  } @else {
-    <h3>No hay eventos disponibles</h3>
+      <div class="card-footer text-muted d-flex justify-content-between">
+        <span>{{ event.date | date: 'dd-MM-yyyy'}}</span>
+        <span>{{ event.price | currency: 'EUR'}}</span>
+      </div>
+    </div>
+  </div>
   }
-</div>
+  } @else {
+  <h3>No hay eventos disponibles</h3>
+  }
