@@ -12,8 +12,7 @@ export class eventFilterPipe implements PipeTransform {
     searchText = searchText.toLowerCase();
 
     return events.filter((event) => 
-      event.title.toLowerCase().includes(searchText)
+      event.title.toLowerCase().includes(searchText) 
     );
   }
-
 }

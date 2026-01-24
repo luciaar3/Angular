@@ -21,8 +21,8 @@
     <div class="card">
       <img src="{{event.image}}" alt="Imagen del {{event.title}}" width="100%">
       <div class="card-body">
-        <h4 class="card-title">{{ event.title | titlecase}}</h4>
-        <p class="card-text">{{ event.description }}</p>
+        <h4 class="card-title"  [innerText]="event.title | titlecase"></h4>
+        <p class="card-text"  [innerText]="event.description"></p>
       </div>
       <div class="card-footer text-muted d-flex justify-content-between">
         <span>{{ event.date | date: 'dd-MM-yyyy'}}</span>
@@ -34,3 +34,28 @@
   } @else {
   <h3>No hay eventos disponibles</h3>
   }
+
+  <form class="mt-4" (ngSubmit)="addEvent()">
+    <div class="form-group">
+      <label for="name">Nombre</label>
+      <input type="text" class="form-control" name="title" [(ngModel)]="newEvent.title" placeholder="Enter name">
+    </div>
+    <div class="form-group">
+      <label for="date">Fecha</label>
+      <input type="date" class="form-control" name="date" [(ngModel)]="newEvent.date">
+    </div>
+    <div class="form-group">
+      <label for="description">Descripción</label>
+      <textarea class="form-control" name="description" rows="3" [(ngModel)]="newEvent.description"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="price">Precio</label>
+      <input type="number" class="form-control" name="price" min="0.00" max="10000.00" step="0.01" [(ngModel)]="newEvent.price"/>
+    </div>
+    <div class="form-group">
+      <label for="image">Imagen</label>
+      <input type="file" class="form-control" name="image" #fileImage (change)="changeImage(fileImage)">
+    </div>
+    <img [src]="newEvent.image" alt="" class="img-thumbnail">
+    <button type="submit" class="btn btn-primary">Create</button>
+  </form>
