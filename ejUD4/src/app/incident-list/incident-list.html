@@ -3,6 +3,7 @@
     <td>Tipo</td>
     <td>Descripción</td>
     <td>Estado</td>
-    <tr incident-item></tr>
-    <tr incident-item></tr>
-</table>
+    <td>Cambios</td>
+    @for (inc of incidents; track inc){
+        <tr incident-item [incident]="inc" (cambio)="inc.estado = $event"></tr>
+    }</table>

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IIncident } from '../interface/iincident';
+import { Input } from '@angular/core';
+import { Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: '[incident-item]',
@@ -9,10 +11,11 @@ import { IIncident } from '../interface/iincident';
   styleUrl: './incident-item.css',
 })
 export class IncidentItem {
+  @Input() incident: any;
+  @Output() cambio = new EventEmitter<string>();
 
-  IIncident  = {
-    tipo: "Tecnología",
-    descripcion: "kashdk bhdfjafj",
-    estado: "Enviado"
+  changeEstado(){
+      this.cambio.emit('Pendiente');
   }
+  
 }

@@ -9,4 +9,9 @@ import { IncidentItem } from '../incident-item/incident-item';
 })
 export class IncidentList {
 
+  incidents = [{
+    tipo: "Tecnología",
+    descripcion: "kashdk bhdfjafj",
+    estado: "Enviado"
+  }]
 }

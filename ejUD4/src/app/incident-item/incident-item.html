@@ -1,3 +1,10 @@
-<td>Error</td>
+<!-- <td>Error</td>
 <td>No se puede acceder</td>
 <td>Pendiente</td>
+ -->
+<td>{{incident.tipo}}</td>
+<td>{{incident.descripcion}}</td>
+<td>{{incident.estado}}</td>
+
+<td><button (click)="changeEstado()">Cambiar Estado</button></td>
+
